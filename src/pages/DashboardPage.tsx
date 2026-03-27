@@ -1,17 +1,22 @@
 import { motion } from "framer-motion";
 import { Plus } from "lucide-react";
-import { mockRequests } from "@/lib/mock-data";
+import { mockRequests, DocumentRequest } from "@/lib/mock-data";
 import { RequestCard } from "@/components/RequestCard";
 import BottomNav from "@/components/BottomNav";
 import { Button } from "@/components/ui/button";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const DashboardPage = () => {
   const navigate = useNavigate();
-  const activeRequests = mockRequests.filter(
-    (r) => r.status !== "completed"
-  );
-  const pastRequests = mockRequests.filter((r) => r.status === "completed");
+  const location = useLocation();
+  const newRequest = (location.state as { newRequest?: DocumentRequest } | null)?.newRequest;
+
+  const allRequests = newRequest
+    ? [newRequest, ...mockRequests]
+    : mockRequests;
+
+  const activeRequests = allRequests.filter((r) => r.status !== "completed");
+  const pastRequests = allRequests.filter((r) => r.status === "completed");
 
   return (
     <div className="min-h-screen bg-background pb-24">

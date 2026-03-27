@@ -1,5 +1,5 @@
 import { useState, useMemo } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { ArrowLeft, Minus, Plus, Upload, QrCode, ArrowRight, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -30,8 +30,20 @@ const NewRequestPage = () => {
     );
   };
 
+  const newRequest = {
+    id: `temp-${refId}`,
+    referenceId: refId,
+    documentType: selectedDocs,
+    purpose,
+    quantity,
+    status: "pending_payment" as const,
+    amount: totalAmount,
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+  };
+
   const handleSubmit = () => {
-    navigate("/dashboard");
+    navigate("/dashboard", { state: { newRequest } });
   };
 
   return (
@@ -39,7 +51,7 @@ const NewRequestPage = () => {
       {/* Header */}
       <div className="sticky top-0 z-40 bg-background border-b border-border">
         <div className="max-w-md mx-auto flex items-center gap-3 px-4 h-14">
-          <button onClick={() => (step > 0 ? setStep(step - 1) : navigate(-1))}>
+          <button onClick={() => navigate("/dashboard")}>
             <ArrowLeft className="h-5 w-5 text-foreground" />
           </button>
           <h1 className="text-body font-semibold text-foreground">New Request</h1>
@@ -57,6 +69,7 @@ const NewRequestPage = () => {
       </div>
 
       <div className="max-w-md mx-auto px-4 py-6">
+        <AnimatePresence mode="wait">
         {/* Step 0: Select documents & details */}
         {step === 0 && (
           <StepWrapper keyName="step0">
@@ -254,6 +267,7 @@ const NewRequestPage = () => {
             key="step3"
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
             transition={{ ease: [0.2, 0, 0, 1] }}
             className="text-center py-12 space-y-6"
           >
@@ -289,6 +303,7 @@ const NewRequestPage = () => {
             </Button>
           </motion.div>
         )}
+        </AnimatePresence>
       </div>
 
       <BottomNav />
@@ -302,6 +317,7 @@ const StepWrapper = ({ keyName, children }: { keyName: string; children: React.R
     key={keyName}
     initial={{ opacity: 0, x: 20 }}
     animate={{ opacity: 1, x: 0 }}
+    exit={{ opacity: 0, x: -20 }}
     transition={{ ease: [0.2, 0, 0, 1] }}
     className="space-y-6"
   >

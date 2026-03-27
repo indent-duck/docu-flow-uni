@@ -58,7 +58,7 @@ export const RequestCard = ({ request }: RequestCardProps) => {
   return (
     <Card
       className="p-4 cursor-pointer hover:shadow-card-active transition-shadow duration-200"
-      onClick={() => navigate(`/request/${request.id}`)}
+      onClick={() => navigate(`/request/${request.id}`, { state: { request } })}
     >
       <div className="flex items-start justify-between mb-3">
         <div className="flex items-center gap-3">

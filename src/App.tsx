@@ -12,6 +12,9 @@ import ProfilePage from "./pages/ProfilePage";
 import StaffLoginPage from "./pages/staff/StaffLoginPage";
 import StaffDashboardPage from "./pages/staff/StaffDashboardPage";
 import StaffRequestDetailPage from "./pages/staff/StaffRequestDetailPage";
+import EditProfilePage from "./pages/EditProfilePage";
+import SecurityPage from "./pages/SecurityPage";
+import HelpPage from "./pages/HelpPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -32,6 +35,9 @@ const App = () => (
           <Route path="/staff" element={<StaffLoginPage />} />
           <Route path="/staff/dashboard" element={<StaffDashboardPage />} />
           <Route path="/staff/request/:id" element={<StaffRequestDetailPage />} />
+          <Route path="/profile/edit" element={<EditProfilePage />} />
+          <Route path="/profile/security" element={<SecurityPage />} />
+          <Route path="/profile/help" element={<HelpPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

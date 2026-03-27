@@ -31,12 +31,13 @@ const ProfilePage = () => {
         >
           <Card className="divide-y divide-border">
             {[
-              { icon: User, label: "Edit Profile" },
-              { icon: Shield, label: "Security" },
-              { icon: HelpCircle, label: "Help & Support" },
-            ].map(({ icon: Icon, label }) => (
+              { icon: User, label: "Edit Profile", path: "/profile/edit" },
+              { icon: Shield, label: "Security", path: "/profile/security" },
+              { icon: HelpCircle, label: "Help & Support", path: "/profile/help" },
+            ].map(({ icon: Icon, label, path }) => (
               <button
                 key={label}
+                onClick={() => navigate(path)}
                 className="flex items-center gap-3 w-full p-4 hover:bg-muted/50 transition-colors"
               >
                 <Icon className="h-5 w-5 text-muted-foreground" />

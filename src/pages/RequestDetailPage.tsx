@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { ArrowLeft, FileText, Calendar, DollarSign, MapPin } from "lucide-react";
-import { useNavigate, useParams } from "react-router-dom";
-import { mockRequests, getStatusLabel, getStatusStep } from "@/lib/mock-data";
+import { useNavigate, useParams, useLocation } from "react-router-dom";
+import { mockRequests, getStatusLabel, getStatusStep, DocumentRequest } from "@/lib/mock-data";
 import { StatusBadge } from "@/components/RequestCard";
 import { Card } from "@/components/ui/card";
 import BottomNav from "@/components/BottomNav";
@@ -11,7 +11,9 @@ const steps = ["Pending Payment", "Processing", "Ready to Claim", "Completed"];
 const RequestDetailPage = () => {
   const navigate = useNavigate();
   const { id } = useParams();
-  const request = mockRequests.find((r) => r.id === id);
+  const location = useLocation();
+  const stateRequest = (location.state as { request?: DocumentRequest } | null)?.request;
+  const request = mockRequests.find((r) => r.id === id) ?? stateRequest;
 
   if (!request) {
     return (
