@@ -23,16 +23,17 @@ const DashboardPage = () => {
         </div>
       </div>
 
-      <div className="max-w-md mx-auto px-4 -mt-4">
-        {/* Quick action */}
+      <div className="max-w-md mx-auto px-4 pt-6">
+        {/* Quick action — separate from header */}
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1, ease: [0.2, 0, 0, 1] }}
+          className="mb-6"
         >
           <Button
             size="lg"
-            className="w-full mb-6 shadow-card-active"
+            className="w-full shadow-card-active"
             onClick={() => navigate("/new-request")}
           >
             <Plus className="h-5 w-5" />
