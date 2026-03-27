@@ -109,6 +109,15 @@ const AuthPage = () => {
               {isLogin ? "Sign up" : "Sign in"}
             </button>
           </p>
+
+          <p className="text-center text-xs text-muted-foreground mt-4">
+            <button
+              onClick={() => navigate("/staff")}
+              className="text-muted-foreground hover:text-primary hover:underline transition-colors"
+            >
+              Staff Portal →
+            </button>
+          </p>
         </motion.div>
       </div>
     </div>
