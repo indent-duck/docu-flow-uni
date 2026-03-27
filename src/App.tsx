@@ -9,6 +9,9 @@ import NewRequestPage from "./pages/NewRequestPage";
 import RequestDetailPage from "./pages/RequestDetailPage";
 import NotificationsPage from "./pages/NotificationsPage";
 import ProfilePage from "./pages/ProfilePage";
+import StaffLoginPage from "./pages/staff/StaffLoginPage";
+import StaffDashboardPage from "./pages/staff/StaffDashboardPage";
+import StaffRequestDetailPage from "./pages/staff/StaffRequestDetailPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -26,6 +29,9 @@ const App = () => (
           <Route path="/request/:id" element={<RequestDetailPage />} />
           <Route path="/notifications" element={<NotificationsPage />} />
           <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/staff" element={<StaffLoginPage />} />
+          <Route path="/staff/dashboard" element={<StaffDashboardPage />} />
+          <Route path="/staff/request/:id" element={<StaffRequestDetailPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

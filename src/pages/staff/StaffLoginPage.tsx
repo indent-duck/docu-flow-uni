@@ -1,21 +1,18 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Mail, Lock, ArrowRight } from "lucide-react";
+import { Mail, Lock, ArrowRight, Shield } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useNavigate } from "react-router-dom";
 
-const AuthPage = () => {
-  const [isLogin, setIsLogin] = useState(true);
+const StaffLoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [fullName, setFullName] = useState("");
-  const [studentId, setStudentId] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    navigate("/dashboard");
+    navigate("/staff/dashboard");
   };
 
   return (
@@ -30,50 +27,29 @@ const AuthPage = () => {
           <div className="mb-10">
             <div className="flex items-center gap-2 mb-6">
               <div className="h-10 w-10 rounded-[10px] bg-primary flex items-center justify-center">
-                <span className="text-primary-foreground font-semibold text-lg">R</span>
+                <Shield className="h-5 w-5 text-primary-foreground" />
               </div>
-              <span className="font-semibold text-subhead text-foreground">RegisTrack</span>
+              <div>
+                <span className="font-semibold text-subhead text-foreground">RegisTrack</span>
+                <p className="text-xs text-muted-foreground">Staff Portal</p>
+              </div>
             </div>
             <h1 className="text-display font-semibold text-foreground leading-tight">
-              {isLogin ? "Welcome back." : "Create account."}
+              Staff Sign In
             </h1>
             <p className="text-body text-muted-foreground mt-2">
-              {isLogin
-                ? "Sign in to track your document requests."
-                : "Register with your university email."}
+              Access the registrar management dashboard.
             </p>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-4">
-            {!isLogin && (
-              <>
-                <div className="space-y-2">
-                  <label className="text-ui-sm font-medium text-foreground">Full Name</label>
-                  <Input
-                    placeholder="Juan Dela Cruz"
-                    value={fullName}
-                    onChange={(e) => setFullName(e.target.value)}
-                    className="h-12 rounded-[8px] bg-card"
-                  />
-                </div>
-                <div className="space-y-2">
-                  <label className="text-ui-sm font-medium text-foreground">Student ID</label>
-                  <Input
-                    placeholder="2021-00001"
-                    value={studentId}
-                    onChange={(e) => setStudentId(e.target.value)}
-                    className="h-12 rounded-[8px] bg-card font-mono"
-                  />
-                </div>
-              </>
-            )}
             <div className="space-y-2">
-              <label className="text-ui-sm font-medium text-foreground">University Email</label>
+              <label className="text-ui-sm font-medium text-foreground">Email</label>
               <div className="relative">
                 <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                 <Input
                   type="email"
-                  placeholder="you@university.edu.ph"
+                  placeholder="staff@university.edu.ph"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className="h-12 rounded-[8px] pl-10 bg-card"
@@ -95,27 +71,18 @@ const AuthPage = () => {
             </div>
 
             <Button type="submit" size="lg" className="w-full mt-2">
-              {isLogin ? "Sign In" : "Create Account"}
+              Sign In
               <ArrowRight className="h-4 w-4" />
             </Button>
           </form>
 
           <p className="text-center text-ui-sm text-muted-foreground mt-6">
-            {isLogin ? "Don't have an account?" : "Already have an account?"}{" "}
+            Student?{" "}
             <button
-              onClick={() => setIsLogin(!isLogin)}
+              onClick={() => navigate("/")}
               className="text-primary font-medium hover:underline"
             >
-              {isLogin ? "Sign up" : "Sign in"}
-            </button>
-          </p>
-
-          <p className="text-center text-xs text-muted-foreground mt-4">
-            <button
-              onClick={() => navigate("/staff")}
-              className="text-muted-foreground hover:text-primary hover:underline transition-colors"
-            >
-              Staff Portal →
+              Go to student login
             </button>
           </p>
         </motion.div>
@@ -124,4 +91,4 @@ const AuthPage = () => {
   );
 };
 
-export default AuthPage;
+export default StaffLoginPage;
