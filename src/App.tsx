@@ -15,6 +15,7 @@ import StaffRequestDetailPage from "./pages/staff/StaffRequestDetailPage";
 import EditProfilePage from "./pages/EditProfilePage";
 import SecurityPage from "./pages/SecurityPage";
 import HelpPage from "./pages/HelpPage";
+import AboutPage from "./pages/AboutPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -38,6 +39,7 @@ const App = () => (
           <Route path="/profile/edit" element={<EditProfilePage />} />
           <Route path="/profile/security" element={<SecurityPage />} />
           <Route path="/profile/help" element={<HelpPage />} />
+          <Route path="/about" element={<AboutPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

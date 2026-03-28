@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { LogOut, ChevronRight, User, Shield, HelpCircle } from "lucide-react";
+import { LogOut, ChevronRight, Shield, HelpCircle, Info } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
@@ -31,9 +31,9 @@ const ProfilePage = () => {
         >
           <Card className="divide-y divide-border">
             {[
-              { icon: User, label: "Edit Profile", path: "/profile/edit" },
               { icon: Shield, label: "Security", path: "/profile/security" },
               { icon: HelpCircle, label: "Help & Support", path: "/profile/help" },
+              { icon: Info, label: "About", path: "/about" },
             ].map(({ icon: Icon, label, path }) => (
               <button
                 key={label}
